@@ -68,23 +68,23 @@ tau_act = max(first_spike_in_burst)-min(first_spike_in_burst);
 tau_st = mean(last_spike_in_burst-first_spike_in_burst,'omitnan');
 
 A = cell(Nburst,1);
-% for b = 1:Nburst
-%     fs = first_spike_in_burst(:,b);
-%     a = zeros(Nelectrode,Nelectrode);
-%     for i = 1:Nelectrode
-%         for j = 1:Nelectrode
-%             a(i,j) = fs(i)-fs(j);
-%         end
-%     end
-%     A{b} = a;    
-% end
+for b = 1:Nburst
+    fs = first_spike_in_burst(:,b);
+    a = zeros(Nelectrode,Nelectrode);
+    for i = 1:Nelectrode
+        for j = 1:Nelectrode
+            a(i,j) = fs(i)-fs(j);
+        end
+    end
+    A{b} = a;    
+end
 
 S = zeros(Nburst,Nburst);
-% for p = 1:Nburst
-%     for q = 1:Nburst
-%         da = abs(A{p} - A{q});
-%         not_diag_idx = eye(Nelectrode)<eps;
-%         ix = da(not_diag_idx)<=time_threshold & ~isnan(da(not_diag_idx));
-%         S(p,q) = sum(ix(:))/(Nelectrode*(Nelectrode-1));
-%     end
-% end
+for p = 1:Nburst
+    for q = 1:Nburst
+        da = abs(A{p} - A{q});
+        not_diag_idx = eye(Nelectrode)<eps;
+        ix = da(not_diag_idx)<=time_threshold & ~isnan(da(not_diag_idx));
+        S(p,q) = sum(ix(:))/(Nelectrode*(Nelectrode-1));
+    end
+end
