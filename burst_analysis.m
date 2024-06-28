@@ -1,4 +1,4 @@
-function [tau_act,tau_st,S,A,first_spike_in_burst,burst_first_t,burst_end_t] = burst_analysis2(spike_time, binsize, sd_tsr, time_threshold, min_burst_duration)
+function [tau_act,tau_st,S,A,first_spike_in_burst,burst_first_t,burst_end_t] = burst_analysis(spike_time, binsize, sd_tsr, time_threshold, min_burst_duration)
 if nargin<2, binsize = 10; end
 if nargin<3, sd_tsr = 0.2; end
 if nargin<4, time_threshold = 50; end
