@@ -1,5 +1,5 @@
 function [num_motif,motif_idx,num_iso_cluster] = extract_motif(S,p,min_burst)
-if nargin<2, p=mean(S(:)); end
+if nargin<2, p=median(S(:)); end
 if nargin<3, min_burst = sqrt(size(S,1)); end
 
 [idx,netsim,dpsim,expref]=apcluster(S,p,'maxits',1000,'convits',100,'dampfact',0.7,'nonoise');
